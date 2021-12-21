@@ -1,7 +1,5 @@
 package com.appliedengineering.aeinstrumentcluster.UI;
 
-import androidx.fragment.app.Fragment;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,48 +9,45 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.fragment.app.Fragment;
+
 import com.appliedengineering.aeinstrumentcluster.Backend.DataManager;
 import com.appliedengineering.aeinstrumentcluster.Backend.dataTypes.GraphDataHolder;
 import com.appliedengineering.aeinstrumentcluster.GraphViewActivity;
 import com.appliedengineering.aeinstrumentcluster.R;
-
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 
-import org.msgpack.value.Value;
-
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class HomeContentScroll extends Fragment {
 
     private final DataManager dataManager;
 
-    public HomeContentScroll(){
+    public HomeContentScroll() {
         super(R.layout.home_content_scroll_layout);
         this.dataManager = DataManager.dataManager;
     }
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = super.onCreateView(inflater, container, savedInstanceState);
 
-        LinearLayout layout = (LinearLayout) view.findViewById(R.id.content_linear_layout);
+        LinearLayout layout = view.findViewById(R.id.content_linear_layout);
 
-        for (int i = 0; i < DataManager.GRAPH_KEY_VALUES.length; i++){
+        for (int i = 0; i < DataManager.GRAPH_KEY_VALUES.length; i++) {
             layout.addView(createNewChartView(DataManager.GRAPH_KEY_VALUES[i]));
         }
 
         return view;
     }
 
-    public View createNewChartView(String keyValue){
+    public View createNewChartView(String keyValue) {
         // inflate the graph layout
         @SuppressLint("InflateParams")
         View graphView = getLayoutInflater().inflate(R.layout.graph_layout, null, false);
@@ -100,7 +95,7 @@ public class HomeContentScroll extends Fragment {
     private String formatTitle(String keyValue) {
         String[] tokens = keyValue.split("(?=\\p{Upper})");
         String returnString = "";
-        for(String token : tokens) {
+        for (String token : tokens) {
             returnString += token.substring(0, 1).toUpperCase() + token.substring(1) + " ";
         }
         return returnString;

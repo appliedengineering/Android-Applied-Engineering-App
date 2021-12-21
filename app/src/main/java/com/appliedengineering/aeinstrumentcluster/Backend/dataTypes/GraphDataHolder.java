@@ -8,31 +8,28 @@ import androidx.core.content.ContextCompat;
 import com.appliedengineering.aeinstrumentcluster.Backend.DataManager;
 import com.appliedengineering.aeinstrumentcluster.Backend.LogUtil;
 import com.appliedengineering.aeinstrumentcluster.R;
-import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
-import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.utils.EntryXComparator;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 public class GraphDataHolder {
 
     private static final String TAG = "GraphDataHolder";
-    
+
     private final String keyValue;
-    private transient LineChart chart;
+    private final transient LineChart chart;
     private List<DataPoint> dataPoints;
-    private transient List<LineChart> chartsToUpdate = new ArrayList<>();
+    private final transient List<LineChart> chartsToUpdate = new ArrayList<>();
 
     public GraphDataHolder(String keyValue, LineChart chart) {
-        
+
         this.keyValue = keyValue;
         this.chart = chart;
         this.dataPoints = new ArrayList<>();
@@ -45,13 +42,13 @@ public class GraphDataHolder {
 //        chart.getXAxis().setDrawGridLines(false);
     }
 
-    public void updateGraphView(){
-        for(LineChart chart : chartsToUpdate) {
+    public void updateGraphView() {
+        for (LineChart chart : chartsToUpdate) {
             LogUtil.add(getEntriesFormatted().toString());
             LineDataSet lineDataSet = new LineDataSet(getEntriesFormatted(), keyValue);
             LineData lineData = new LineData(lineDataSet);
 
-            if(chartsToUpdate.indexOf(chart) == 0) {
+            if (chartsToUpdate.indexOf(chart) == 0) {
                 // Hide labels
                 lineData.setDrawValues(false);
                 lineData.setHighlightEnabled(false);
@@ -76,7 +73,6 @@ public class GraphDataHolder {
             chart.setDescription(description);
 
 
-
             Drawable drawable = ContextCompat.getDrawable(chart.getContext(), R.drawable.fade_cool_blue);
             lineDataSet.setDrawFilled(true);
             lineDataSet.setLineWidth(3f);
@@ -88,7 +84,7 @@ public class GraphDataHolder {
             chart.invalidate();
 
             // move to the latest entry
-            if(dataPoints.size() > 20) {
+            if (dataPoints.size() > 20) {
                 chart.moveViewToX(dataPoints.size() - 20);
             }
         }
@@ -98,11 +94,11 @@ public class GraphDataHolder {
         // Format the data relative to the time elapsed
         List<Entry> newEntryList = new ArrayList<>();
         int i = 0;
-        for(DataPoint e : dataPoints) {
+        for (DataPoint e : dataPoints) {
             i++;
             float x, y;
-            Log.d(TAG, "getEntriesFormatted: " + (long) e.getX() + " , " + DataManager.START_TIME);
-            x = (e.getX()-DataManager.START_TIME)/1000f; // divide by 1000 to convert to seconds
+            Log.d(TAG, "getEntriesFormatted: " + e.getX() + " , " + DataManager.START_TIME);
+            x = (e.getX() - DataManager.START_TIME) / 1000f; // divide by 1000 to convert to seconds
             y = e.getY();
             Entry newEntry = new Entry(x, y);
 

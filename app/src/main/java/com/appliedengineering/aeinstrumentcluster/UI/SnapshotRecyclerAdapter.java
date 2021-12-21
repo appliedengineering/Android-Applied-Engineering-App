@@ -20,23 +20,20 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
-import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.time.Instant;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
 public class SnapshotRecyclerAdapter extends RecyclerView.Adapter<SnapshotRecyclerAdapter.SnapshotViewHolder> {
 
-    List<String> snapshots =  new ArrayList<>();
+    List<String> snapshots = new ArrayList<>();
 
-    public void setData(Set<String> stringSet){
+    public void setData(Set<String> stringSet) {
         snapshots.clear();
-        if(stringSet == null){
+        if (stringSet == null) {
             return;
         }
         snapshots.addAll(stringSet);
@@ -48,7 +45,7 @@ public class SnapshotRecyclerAdapter extends RecyclerView.Adapter<SnapshotRecycl
     public SnapshotViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new SnapshotViewHolder(
                 LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.snapshot_view, parent, false));
+                        .inflate(R.layout.snapshot_view, parent, false));
     }
 
     @Override
@@ -68,6 +65,7 @@ public class SnapshotRecyclerAdapter extends RecyclerView.Adapter<SnapshotRecycl
         private final TextView date;
 
         private String snapshot;
+
         public SnapshotViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -97,8 +95,8 @@ public class SnapshotRecyclerAdapter extends RecyclerView.Adapter<SnapshotRecycl
 
         @Override
         public void onClick(View view) {
-            if(snapshot != null) {
-                if(!HomeActivity.isSnapshotLoadable){
+            if (snapshot != null) {
+                if (!HomeActivity.isSnapshotLoadable) {
                     Toast.makeText(view.getContext(), "Disable debug data and network before loading snapshot!", Toast.LENGTH_LONG).show();
                     return;
                 }

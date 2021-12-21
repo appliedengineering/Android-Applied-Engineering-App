@@ -1,20 +1,18 @@
 package com.appliedengineering.aeinstrumentcluster;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.appliedengineering.aeinstrumentcluster.Backend.DataManager;
 import com.appliedengineering.aeinstrumentcluster.Backend.dataTypes.GraphDataHolder;
 import com.github.mikephil.charting.charts.LineChart;
 
-import org.w3c.dom.Text;
-
 public class GraphViewActivity extends AppCompatActivity {
 
-    private DataManager dataManager;
     public static final String DATA_INDEX = "DATA_INDEX";
+    private DataManager dataManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +29,7 @@ public class GraphViewActivity extends AppCompatActivity {
         // retrieve the data
         dataManager = DataManager.dataManager;
         GraphDataHolder graphDataHolder = dataManager.getGraphDataHolderRef(chartId);
-        if(graphDataHolder != null) {
+        if (graphDataHolder != null) {
             LineChart chart = findViewById(R.id.lineChartId);
             graphDataHolder.register(chart);
             graphDataHolder.updateGraphView();
