@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="backgroundColor" format="color"/>
+    <attr name="inverse_backgroundColor" format="color"/>
+    <attr name="backgroundColorGray" format="color"/>
+</resources>
