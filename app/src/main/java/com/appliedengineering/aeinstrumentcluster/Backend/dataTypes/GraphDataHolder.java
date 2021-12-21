@@ -1,5 +1,7 @@
 package com.appliedengineering.aeinstrumentcluster.Backend.dataTypes;
 
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 
@@ -76,6 +78,31 @@ public class GraphDataHolder {
                 chart.setVisibleXRange(1, 20);
             }
 
+            boolean isOutOfRange = false;
+
+            // check whether monitor is set
+            SharedPreferences sharedPreferences = chart.getContext().getSharedPreferences("GraphViewData", 0);
+            String maxString = sharedPreferences.getString(keyValue+"_MAX", null);
+            String minString = sharedPreferences.getString(keyValue+"_MIN", null);
+            if(maxString != null) {
+                float maxValue = Float.parseFloat(maxString);
+                for (DataPoint d :
+                        dataPoints) {
+                    if(d.getY() > maxValue){
+                        isOutOfRange = true;
+                    }
+                }
+            }
+            if(minString != null) {
+                float minValue = Float.parseFloat(minString);
+                for (DataPoint d :
+                        dataPoints) {
+                    if(d.getY() < minValue){
+                        isOutOfRange = true;
+                    }
+                }
+            }
+
             // make the chart smooth
             lineDataSet.setMode(LineDataSet.Mode.CUBIC_BEZIER);
             lineDataSet.setCubicIntensity(.1f);
@@ -86,6 +113,11 @@ public class GraphDataHolder {
 
 
             Drawable drawable = ContextCompat.getDrawable(chart.getContext(), R.drawable.fade_cool_blue);
+            if(isOutOfRange) {
+                lineDataSet.setColor(Color.RED);
+                lineDataSet.setLabel(lineDataSet.getLabel()+" (OUT OF RANGE)");
+                drawable = ContextCompat.getDrawable(chart.getContext(), R.drawable.fade_cool_red);
+            }
             lineDataSet.setDrawFilled(true);
             lineDataSet.setLineWidth(3f);
             lineDataSet.setFillDrawable(drawable);

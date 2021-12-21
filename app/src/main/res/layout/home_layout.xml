@@ -344,8 +344,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/padding"
-                >
+                android:padding="@dimen/padding">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -360,22 +359,21 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="monospace"
-                    android:textColor="@color/black"
-                    android:text="no" />
+                    android:text="no"
+                    android:textColor="@color/black" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/padding"
-                >
+                android:padding="@dimen/padding">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/sfprotextbold"
-                    android:text="Snapshot Date:"
+                    android:text="Start Date:"
                     android:textColor="@color/black" />
 
                 <TextView
@@ -383,8 +381,31 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="monospace"
-                    android:textColor="@color/black"
-                    android:text="" />
+                    android:text=""
+                    android:textColor="@color/black" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/padding"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/sfprotextbold"
+                    android:text="Values out of range:"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/snapshot_out_of_range"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="monospace"
+                    android:text="none"
+                    android:textColor="@color/black" />
             </LinearLayout>
 
             <View

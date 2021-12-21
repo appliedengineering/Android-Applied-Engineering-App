@@ -36,6 +36,7 @@ public class HomeActivity extends AppCompatActivity {
     public static boolean isSnapshotLoaded = false;
     public static TextView snapshotLoadedIndicator;
     public static TextView snapshotTimeIndicator;
+    public static TextView outOfRangeIndicator;
     public static Activity activity;
     private BackendDelegate backendDelegateObj;
     private TimestampNetworking timestampNetworking;
@@ -180,6 +181,7 @@ public class HomeActivity extends AppCompatActivity {
 
         snapshotLoadedIndicator = findViewById(R.id.snapshot_loaded_indicator);
         snapshotTimeIndicator = findViewById(R.id.snapshot_time_indicator);
+        outOfRangeIndicator = findViewById(R.id.snapshot_out_of_range);
 
         // Remove snapshots button
         Button removeSnapshotsButton = findViewById(R.id.remove_snapshot_button);

@@ -4,24 +4,91 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GraphViewActivity"
-    android:background="@color/white">
+    android:background="@color/white"
+    tools:context=".GraphViewActivity">
 
     <TextView
         android:id="@+id/graph_title_view"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:text="Graph Key Value"
+        android:layout_marginHorizontal="@dimen/paddingDouble"
         android:fontFamily="@font/sfprodisplayblack"
-        android:textColor="@color/black"
+        android:gravity="left"
         android:paddingHorizontal="@dimen/padding"
         android:paddingVertical="@dimen/paddingHalf"
-        android:gravity="left"
-        android:layout_marginHorizontal="@dimen/paddingDouble"
-        android:textSize="24dp"/>
+        android:text="Graph Key Value"
+        android:textColor="@color/black"
+        android:textSize="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/graph_title_view">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/paddingDouble"
+            android:fontFamily="@font/sfprodisplayregular"
+            android:gravity="center"
+            android:paddingHorizontal="@dimen/paddingHalf"
+            android:paddingVertical="@dimen/paddingHalf"
+            android:text="Monitor"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sfprodisplayregular"
+            android:gravity="center"
+            android:paddingHorizontal="@dimen/padding"
+            android:paddingVertical="@dimen/paddingHalf"
+            android:text="Max:"
+            android:textColor="@color/black"
+            android:textSize="18dp" />
+
+        <EditText
+            android:id="@+id/max_edit_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="@color/black"
+            android:hint="max"
+            android:inputType="number|numberDecimal"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/paddingDouble"
+            android:layout_marginLeft="@dimen/paddingDouble"
+            android:fontFamily="@font/sfprodisplayregular"
+            android:gravity="center"
+            android:paddingHorizontal="@dimen/padding"
+            android:paddingVertical="@dimen/paddingHalf"
+            android:text="Min:"
+            android:textColor="@color/black"
+            android:textSize="18dp" />
+
+        <EditText
+            android:id="@+id/min_edit_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/paddingDouble"
+            android:layout_marginRight="@dimen/paddingDouble"
+            android:layout_weight="1"
+            android:backgroundTint="@color/black"
+            android:hint="min"
+            android:inputType="number|numberDecimal"
+            android:textColor="@color/black" />
+
+
+    </LinearLayout>
 
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/lineChartId"
@@ -29,7 +96,7 @@
         android:layout_height="0dp"
         android:layout_margin="@dimen/paddingDouble"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/graph_title_view"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        tools:layout_editor_absoluteX="20dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

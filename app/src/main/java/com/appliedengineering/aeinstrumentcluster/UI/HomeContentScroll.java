@@ -92,7 +92,7 @@ public class HomeContentScroll extends Fragment {
         return graphView;
     }
 
-    private String formatTitle(String keyValue) {
+    public static String formatTitle(String keyValue) {
         String[] tokens = keyValue.split("(?=\\p{Upper})");
         String returnString = "";
         for (String token : tokens) {
