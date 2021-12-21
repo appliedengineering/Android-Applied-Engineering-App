@@ -141,9 +141,8 @@ public class SnapshotRecyclerAdapter extends RecyclerView.Adapter<SnapshotRecycl
             JsonObject json = parser.parse(string).getAsJsonObject();
 
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
-            String prettyJson = gson.toJson(json);
 
-            return prettyJson;
+            return gson.toJson(json);
         }
     }
 }

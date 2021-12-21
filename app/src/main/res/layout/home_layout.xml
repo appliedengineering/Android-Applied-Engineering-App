@@ -344,7 +344,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/padding">
+                android:padding="@dimen/padding"
+                >
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -362,6 +363,37 @@
                     android:textColor="@color/black"
                     android:text="no" />
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/padding"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/sfprotextbold"
+                    android:text="Snapshot Date:"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/snapshot_time_indicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="monospace"
+                    android:textColor="@color/black"
+                    android:text="" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/colorAccent"
+                android:elevation="@dimen/cardview_default_elevation"
+                android:outlineAmbientShadowColor="@color/colorAccent"
+                android:outlineSpotShadowColor="@color/colorAccent" />
 
             <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"

@@ -1,9 +1,11 @@
 package com.appliedengineering.aeinstrumentcluster.UI;
 
+import android.app.Activity;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.os.SystemClock;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -24,6 +26,7 @@ import com.appliedengineering.aeinstrumentcluster.Backend.TimestampNetworking;
 import com.appliedengineering.aeinstrumentcluster.R;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -32,6 +35,8 @@ public class HomeActivity extends AppCompatActivity {
     public static boolean isSnapshotLoadable = false;
     public static boolean isSnapshotLoaded = false;
     public static TextView snapshotLoadedIndicator;
+    public static TextView snapshotTimeIndicator;
+    public static Activity activity;
     private BackendDelegate backendDelegateObj;
     private TimestampNetworking timestampNetworking;
     private DataManager dataManager;
@@ -53,6 +58,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setTheme(/*isSystemDarkMode() ? R.style.DarkTheme : */R.style.LightTheme);
         setContentView(R.layout.home_layout);
+        activity = this;
         //System.out.println(" is dark mode - " + isSystemDarkMode());
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
@@ -173,6 +179,7 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         snapshotLoadedIndicator = findViewById(R.id.snapshot_loaded_indicator);
+        snapshotTimeIndicator = findViewById(R.id.snapshot_time_indicator);
 
         // Remove snapshots button
         Button removeSnapshotsButton = findViewById(R.id.remove_snapshot_button);

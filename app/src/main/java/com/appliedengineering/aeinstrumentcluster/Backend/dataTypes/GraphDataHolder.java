@@ -8,6 +8,7 @@ import androidx.core.content.ContextCompat;
 import com.appliedengineering.aeinstrumentcluster.Backend.DataManager;
 import com.appliedengineering.aeinstrumentcluster.Backend.LogUtil;
 import com.appliedengineering.aeinstrumentcluster.R;
+import com.appliedengineering.aeinstrumentcluster.UI.HomeActivity;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.data.Entry;
@@ -17,6 +18,7 @@ import com.github.mikephil.charting.utils.EntryXComparator;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 public class GraphDataHolder {
@@ -43,6 +45,16 @@ public class GraphDataHolder {
     }
 
     public void updateGraphView() {
+        // update indicators
+        HomeActivity.activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Date date = new Date();
+                date.setTime(DataManager.START_TIME);
+                HomeActivity.snapshotTimeIndicator.setText(date.toString());
+            }
+        });
+
         for (LineChart chart : chartsToUpdate) {
             LogUtil.add(getEntriesFormatted().toString());
             LineDataSet lineDataSet = new LineDataSet(getEntriesFormatted(), keyValue);
